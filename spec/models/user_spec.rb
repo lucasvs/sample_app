@@ -7,6 +7,7 @@ describe User do
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:password)}
 	it { should respond_to(:password_confirmation)}
+	it { should respond_to(:remember_token) }
 	it { should respond_to(:authenticate) }
 
 	describe "when name is not present" do
@@ -32,7 +33,7 @@ describe User do
 					expect(@user).not_to be_valid
 				end
 			end
-		end
+	end
 		describe "when email format is valid" do
 			it "should be valid" do
 				addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
@@ -81,7 +82,8 @@ describe User do
 			it { should be_invalid }
 		end
 
-
-
-
+		describe "remember token" do
+			before { @user.save }
+			its(:remember_token) { should_not be_blank }
+		end
 	end
