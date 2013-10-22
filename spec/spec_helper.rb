@@ -36,4 +36,6 @@ Spork.each_run do
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  FactoryGirl.reload
+
 end
